@@ -169,13 +169,13 @@ def meow():
 ## error handling
 @app.errorhandler(404)
 def fourohfour(e):
-    return "<h1>Where is my kib- I mean webpage?</h1><br>KP says 404!", 404
+    return "<h1>Where did he go? Who knows!</h1><br>KP disappeared!", 404
 @app.errorhandler(403)
 def fourohthree(e):
-    return "<h1>How dare you intrude on my private cat post!</h1><br>KP says 403!", 403
+    return "<h1>Please leave. NOW.</h1><br>please 🙏", 403
 @app.errorhandler(500)
 def fivehundred(e):
-    return "<h1>KP is overwhelmed, or has errored out!</h1><br>KP says 500! Or he would, if he wasn't erroring.<br><br><br>We are most likely working on this issue, and it will hopefully be resolved soon.", 500
+    return "<h1>beep boop. KP is malfunctioning!<br><br><br>We are working on fixing the KP.", 500
 ## run the Flask app on start
 if __name__ == "__main__":
     app.run()
