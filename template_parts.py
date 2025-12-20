@@ -27,6 +27,7 @@ class post_:
         <option value=\"8\">musical note</option>\
         <option value=\"9\">cheese wedge</option>\
         <option value=\"10\">chocolate bar</option>\
+        <option value=\"11\">sleepin' car</option>\
         </select><img src=\"/img/3\" id=\"pre\">"
         self.upload_file_form = '<br><label for="imageFile">Select an image to upload: </label>\
             <input type="file" id="imageFile" accept="image/*">\
