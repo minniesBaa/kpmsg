@@ -9,7 +9,7 @@ function getid(){
         });
 }
 async function check(){
-    if (document.visibilityState = true){
+    if (document.visibilityState == "visible"){
     let nowid;
     nowid = await getid()
     if(nowid !== id){
