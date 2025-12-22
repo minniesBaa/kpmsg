@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 ## import more stuff then you would ever think youd need
 from flask import Flask, request, redirect, send_from_directory, Response
 from markupsafe import escape
@@ -182,4 +184,4 @@ def fivehundred(e):
     return "<h1>beep boop. KP is malfunctioning!<br><br><br>We are working on fixing the KP.", 500
 ## run the Flask app on start
 if __name__ == "__main__":
-    serve(app, port=80)
+    serve(app, port=80, host="0.0.0.0")
