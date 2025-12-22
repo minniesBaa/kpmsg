@@ -58,7 +58,7 @@ def main():
         i = i + 1
         imgcode = f"<img alt=\"user post emoji\" src=\"img/{imgs[i]}\">"
         posts = posts + str(escape(post[0])) + ": " + str(escape(post[1])) + " " + imgcode + "<span style=\"color:grey\"> <i>" + str(escape(sigs[i])) + "</i></span><br>"
-    posts = posts + f'{html.post.form}{html.post.emoji_selection}</form>{html.post.upload_file_form}{html.ip_finder.part_1}{get_ip()}{html.ip_finder.part_2}<br><br>Latest image:<br>{html.post.latest_image}<br>{html.styling.to_dark}<br><br>Posts this session: {mid}<a style="position:fixed;top:5px;right:5px;color:black;" href="https://github.com/minniesbaa/kpmsg">⭐ Star our GitHub repository!</a>'
+    posts = posts + f'{html.post.form}{html.post.emoji_selection}</form>{html.post.upload_file_form}{html.ip_finder.part_1}<br><br>Latest image:<br>{html.post.latest_image}<br>{html.styling.to_dark}<br><br>Posts this session: {mid}<a style="position:fixed;top:5px;right:5px;color:black;" href="https://github.com/minniesbaa/kpmsg">⭐ Star our GitHub repository!</a>'
     return posts
 @app.route("/dark")
 def main_dark():
@@ -69,7 +69,7 @@ def main_dark():
         i = i + 1
         imgcode = f"<img alt=\"user post emoji\" src=\"img/{imgs[i]}\">"
         posts = posts + str(escape(post[0])) + ": " + str(escape(post[1])) + " " + imgcode + "<span style=\"color:grey\"> <i>" + str(escape(sigs[i])) + "</i></span><br>"
-    posts = posts + f'{html.post.darkform}{html.post.emoji_selection}</form>{html.post.upload_file_form}{html.ip_finder.part_1}{get_ip()}{html.ip_finder.part_2}<br><br>Latest image:<br>{html.post.latest_image}<br>{html.styling.to_light}<br><br>Posts this session: {mid}<a style="position:fixed;top:5px;right:5px;color:white;" href="https://github.com/minniesbaa/kpmsg">⭐ Star our GitHub repository!</a>'
+    posts = posts + f'{html.post.darkform}{html.post.emoji_selection}</form>{html.post.upload_file_form}{html.ip_finder.part_1}<br><br>Latest image:<br>{html.post.latest_image}<br>{html.styling.to_light}<br><br>Posts this session: {mid}<a style="position:fixed;top:5px;right:5px;color:white;" href="https://github.com/minniesbaa/kpmsg">⭐ Star our GitHub repository!</a>'
     return posts
 @app.route("/dark/msg")
 ## route for message posting, containing length checks that redirect back to /dark#<hash> for alerts on page

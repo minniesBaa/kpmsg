@@ -8,8 +8,7 @@ class styling_:
         self.to_light = '<br><a href="/" style="color:white;">light mode</a></body><br><a href="/kpdrawing?dark" target="_blank" style="color:white;">kp drawing editor</a>'
 class ip_finder_:
     def __init__(self):
-        self.part_2 = '\')">click to show</button>'
-        self.part_1 = '<br>Chat messages show your IP. Do not post if you wish to hide your IP.<br>Your IP is: <button type="button" onclick="w=open(\'\',\'ip\',\'popup,width=200,height=100\');w.document.write(\'your ip is: '
+        self.part_1 = '<br>Chat messages identify you by your IP address. Don\'t post if you wish to hide your IP. (although it <a href=https://www.bigdatacloud.com/blog/understanding-ip-addresses style="color:darkgray;">isn\'t a secret anyway</a>)'
 class post_:
     def __init__(self):
         self.form = '<br><head><link rel="icon" href="/favicon.ico" type="image/x-icon"><title>kp\'s message board | for doing message board things</title></head><form action="/msg" method="GET"><input placeholder="post text" type="text" id="post_text" name="p"><button type="submit">post</button><br><input placeholder="signature" type="text" id="signature" name="s"><input id="num" type="hidden" name=id>'
