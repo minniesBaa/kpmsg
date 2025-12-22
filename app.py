@@ -4,7 +4,7 @@ from markupsafe import escape
 import template_parts as html
 import random
 import kpdraw
-import json 
+import ipaddress
 
 ## define the Flask app  and APScheduler instance
 #scheduler = APScheduler()
@@ -35,7 +35,10 @@ def get_ip():
     try:
         res = request.headers.getlist("X-Forwarded-For")[0]
     except:
-        res = request.remote_addr
+        res = str(request.remote_addr)
+    obj = ipaddress.ip_address(res)
+    if obj.version == 6:
+        return res[:15]
     return str(res)
 @app.route("/favicon.ico")
 def favicon():
