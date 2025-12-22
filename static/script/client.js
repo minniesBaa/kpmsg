@@ -9,11 +9,12 @@ function getid(){
         });
 }
 async function check(){
+    if (document.visibilityState = true){
     let nowid;
     nowid = await getid()
     if(nowid !== id){
         location.reload(true);
-    }
+    }}
 }
 function updatetextbox(){
     const inputbox = document.getElementById('post_text');
