@@ -5,6 +5,7 @@ import template_parts as html
 import random
 import kpdraw
 import ipaddress
+from waitress import serve
 
 ## define the Flask app  and APScheduler instance
 #scheduler = APScheduler()
@@ -181,4 +182,4 @@ def fivehundred(e):
     return "<h1>beep boop. KP is malfunctioning!<br><br><br>We are working on fixing the KP.", 500
 ## run the Flask app on start
 if __name__ == "__main__":
-    app.run()
+    serve(app, port=80)
