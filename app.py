@@ -184,4 +184,4 @@ def fivehundred(e):
     return "<h1>beep boop. KP is malfunctioning!<br><br><br>We are working on fixing the KP.", 500
 ## run the Flask app on start
 if __name__ == "__main__":
-    serve(app, port=80, host="0.0.0.0")
+    serve(app, port=8080, host="0.0.0.0")
