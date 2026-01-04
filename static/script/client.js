@@ -1,5 +1,6 @@
 var id;
 const hash = window.location.hash;
+let minutes = 0;
 function getid(){
     return fetch("/api/id")
         .then(response =>{
@@ -8,13 +9,28 @@ function getid(){
             }
         });
 }
-async function check(){
-    if (document.visibilityState == "visible"){
+async function checkID() {
     let nowid;
     nowid = await getid()
     if(nowid !== id){
         location.reload(true);
-    }}
+    }
+}
+
+async function check(){
+    if (document.visibilityState == "visible"){
+        await checkID();
+        minutes = 0;
+        setTimeout(check, 1000)
+    } else {
+        if (minutes < 60){
+            await checkID();
+            minutes++;
+            setTimeout(check, 60000)
+        } else {
+            setTimeout(check, 1000)
+        }
+    }
 }
 function updatetextbox(){
     const inputbox = document.getElementById('post_text');
@@ -78,7 +94,7 @@ function onload(){
     sig.addEventListener('input', savesig);
     const fileInput = document.getElementById('imageFile');
     
-    setInterval(check, 1000);
+    setTimeout(check, 1000);
     // if(hash === "#0"){
     // const doc = document.body;
     // doc.innerHTML += '<div style="background-color: lightgray; color: white; padding: 5px; border: 2px solid red; text-align: center; font-family: sans-serif; font-size: 24px;">Put some text in the box before posting!</div>'
