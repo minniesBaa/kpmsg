@@ -25,7 +25,7 @@ lf = {
     "data": None,
     "mime": None
 }
-with open("static/img/default.png", "rb") as f:
+with open("static/img/default.jpg", "rb") as f:
     lf["data"] = f.read() # type: ignore
     lf["mime"] = "image/png" # type: ignore
 
