@@ -155,11 +155,6 @@ def dingus_face():
 @app.route("/client.js")
 def clientjs():
     return send_from_directory("static/script", "client.js")
-## get css
-@app.route("/dark.css")
-def dark():
-    return "BLOP. /dark.css is no longer here!", 410
-    #return send_from_directory("static/css", "dark.css")
 ## returns the emoji for site use
 @app.route("/img/<img_id>")
 def img(img_id):
@@ -184,4 +179,5 @@ def fivehundred(e):
     return "<h1>beep boop. KP is malfunctioning!<br><br><br>We are working on fixing the KP.", 500
 ## run the Flask app on start
 if __name__ == "__main__":
+    print("serving on http://127.0.0.1:8080")
     serve(app, port=8080, host="0.0.0.0")
