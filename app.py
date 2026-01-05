@@ -180,4 +180,4 @@ def fivehundred(e):
 ## run the Flask app on start
 if __name__ == "__main__":
     print("serving on http://127.0.0.1:8080")
-    serve(app, port=8080, host="0.0.0.0")
+    serve(app, port=8080, host="0.0.0.0", threads=8)
