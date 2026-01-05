@@ -1,6 +1,7 @@
 var id;
 const hash = window.location.hash;
 let minutes = 0;
+let seconds = 0;
 function getid(){
     return fetch("/api/id")
         .then(response =>{
@@ -22,8 +23,11 @@ async function check(){
         await checkID();
         minutes = 0;
         setTimeout(check, 1000)
+        seconds = 0;
     } else {
-        if (minutes < 60){
+        seconds++;
+        if (minutes < 60 && seconds == 60){
+            seconds = 0;
             await checkID();
             minutes++;
             setTimeout(check, 60000)
