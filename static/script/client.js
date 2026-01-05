@@ -38,10 +38,10 @@ async function check(){
         seconds = 0;
     } else {
         seconds++;
-        if (minutes < 60 && seconds == 60){
+        if (minutes < 60 && seconds == 15){
             seconds = 0;
             await checkID();
-            minutes++;
+            minutes += 0.25;
             setTimeout(check, 60000)
         } else {
             setTimeout(check, 1000)
@@ -68,26 +68,10 @@ function preview(){
     urlParams.set('e', imgsel.value);
     history.replaceState(null, '', currentUrl.toString());
 }
-function updatefavicon(){
-    var link = document.querySelector("link[rel~='icon']");
-    if (!link) {
-        link = document.createElement('link');
-        link.rel = 'icon';
-        document.head.appendChild(link);
-}
-link.href = `/noalerticon.ico?force-no-cache=${Math.round(Math.random() * 10000)}`;
-}
 function rint(m,x) {
   return Math.floor(Math.random()*(x-m+1))+m;
 }
-setTimeout(updatefavicon, 1000);
 function onload(){
-    //darkmode testing
-    //dbody = document.body
-    //dbody.classList.toggle("dark");
-    //dhead = document.head
-    //dhead.classList.toggle("dark");
-    //
     if (localStorage.getItem("uid") == null){
         localStorage.setItem("uid", rint(1000,9999))
     }

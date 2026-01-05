@@ -43,9 +43,6 @@ def get_ip():
     if obj.version == 6:
         return res[:15]
     return str(res)
-@app.route("/favicon.ico")
-def favicon():
-    return send_from_directory("static/img", "kp_1.ico")
 @app.route("/noalerticon.ico")
 def noalerticon():
     return send_from_directory("static/img", "kp_0.ico")
@@ -54,7 +51,7 @@ def noalerticon():
 @app.route("/")
 def main():
     global mid
-    posts = f"<head><link rel=\"icon\" href=\"/favicon.ico\" type=\"image/x-icon\"></head><body style=\"padding: 20px;\">{html.post.titlepage}{random.choice(motds)}<br><br>"
+    posts = f"<head><link rel=\"icon\" href=\"/noalerticon.ico\" type=\"image/x-icon\"></head><body style=\"padding: 20px;\">{html.post.titlepage}{random.choice(motds)}<br><br>"
     i = -1
     for post in msgs:
         i = i + 1
@@ -65,7 +62,7 @@ def main():
 @app.route("/dark")
 def main_dark():
     global mid
-    posts = f"<head><link rel=\"icon\" href=\"/favicon.ico\" type=\"image/x-icon\"></head><body style=\"padding: 20px;\" class=\"dark\">{html.styling.darkmode_css}{html.post.titlepage}{random.choice(motds)}<br><br>"
+    posts = f"<head><link rel=\"icon\" href=\"/noalerticon.ico\" type=\"image/x-icon\"></head><body style=\"padding: 20px;\" class=\"dark\">{html.styling.darkmode_css}{html.post.titlepage}{random.choice(motds)}<br><br>"
     i = -1
     for post in msgs:
         i = i + 1
