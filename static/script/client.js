@@ -2,17 +2,29 @@ var id;
 const hash = window.location.hash;
 let minutes = 0;
 let seconds = 0;
-function getid(){
-    return fetch("/api/id")
-        .then(response =>{
-            if(response.ok){
-                return response.text();
-            }
-        });
+let state = true;
+let nowid = -1;
+async function getid(){
+    try {
+        const res = await fetch("/api/id")
+        if (!res.ok){
+            return null
+        }
+        return res.text()
+    } catch {
+        return null
+    }
 }
 async function checkID() {
-    let nowid;
+    if (nowid == null) {
+        location.reload(true)
+    }
     nowid = await getid()
+    if (!nowid) {
+        document.body.innerHTML = "Unable to connect to server. Retrying..."
+        nowid = null;
+        return null;
+    }
     if(nowid !== id){
         location.reload(true);
     }
