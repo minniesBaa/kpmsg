@@ -4,6 +4,7 @@ let minutes = 0;
 let seconds = 0;
 let state = true;
 let nowid = -1;
+let supressReloads = false;
 async function getid(){
     try {
         const res = await fetch("/api/id")
@@ -25,7 +26,7 @@ async function checkID() {
         nowid = null;
         return null;
     }
-    if(nowid !== id){
+    if(nowid !== id && !supressReloads){
         location.reload(true);
     }
 }
@@ -85,28 +86,13 @@ function onload(){
     getid()
         .then(nowid => {
             id = nowid;
-            //if(id === "0"){
-            //    const doc = document.body;
-            //    doc.innerHTML += '<div style="background-color: lightgray; color: white; padding: 5px; border: 2px darkgray; text-align: center; font-family: sans-serif; font-size: 24px;">kp\'s message board just restarted!</div>'
-            //}
         });
     inputbox.addEventListener('input', updatetextbox);
     sig.addEventListener('input', savesig);
     const fileInput = document.getElementById('imageFile');
     
     setTimeout(check, 1000);
-    // if(hash === "#0"){
-    // const doc = document.body;
-    // doc.innerHTML += '<div style="background-color: lightgray; color: white; padding: 5px; border: 2px solid red; text-align: center; font-family: sans-serif; font-size: 24px;">Put some text in the box before posting!</div>'
-    // }
-    // if(hash === "#long"){
-    // const doc = document.body;
-    // doc.innerHTML += '<div style="background-color: lightgray; color: white; padding: 5px; border: 2px solid red; text-align: center; font-family: sans-serif; font-size: 24px;">Your message was too long, so it has not been posted. Try to keep messages less than 100 characters!</div>'
-    // }
-    // if(hash === "#long2"){
-    // const doc = document.body;
-    // doc.innerHTML += '<div style="background-color: lightgray; color: white; padding: 5px; border: 2px solid red; text-align: center; font-family: sans-serif; font-size: 24px;">Your signature is too long. Make sure it\'s less than 40 characters!</div>'
-    // }
+
     const initialUrl = new URL(window.location.href);
     const initialSearchParams = initialUrl.searchParams;
     if (initialSearchParams.has("p")) {
@@ -118,34 +104,42 @@ function onload(){
         imgsel.value = initialSearchParams.get("e");
         preview()
     }
-        const uploadButton = document.getElementById('upload');
-        const restoredImage = document.getElementById('restoredImage');
-        uploadButton.addEventListener('click', async () => {
-            const file = fileInput.files[0];
-            if (!file) {
-                alert("kp doesn't see your file. maybe add one first?")
-                return;
-            }
+    fileInput.addEventListener('click', ()=>{
+        supressReloads = true;
+    });
+    fileInput.addEventListener('cancel', ()=>{
+        supressReloads = false;
+    });
+    fileInput.addEventListener('change', ()=>{
+        upload();
+    });
+}
 
-            if (file.size > 5*1024*1024) {
-                alert("that file is bigger than kp himself! pick one smaller than 5 megabytes.")
-                return;
-            }
+async function upload() {
+    const fileInput = document.getElementById("imageFile")
+    const file = fileInput.files[0];
+    if (!file) {
+        alert("kp doesn't see your file. maybe add one first?")
+        return;
+    }
 
-            const formData = new FormData();
-            formData.append('image', file);
+    if (file.size > 5*1024*1024) {
+        alert("that file is bigger than kp himself! pick one smaller than 5 megabytes.")
+        return;
+    }
 
-            try {
-                const response = await fetch('/upload', {
-                    method: 'POST',
-                    body: formData,
-                });
+    const formData = new FormData();
+    formData.append('image', file);
 
-                restoredImage.src = `/latest?t=${new Date().getTime()}`;
-            } catch (error) {
-                console.log(error)
-            }
+    try {
+        await fetch('/upload', {
+            method: 'POST',
+            body: formData,
         });
+    } catch (error) {
+        console.log(error)
+    }
+    supressReloads = false;
 }
 
 document.addEventListener('DOMContentLoaded', onload);

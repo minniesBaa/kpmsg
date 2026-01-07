@@ -30,7 +30,7 @@ class post_:
         </select><img src=\"/img/3\" id=\"pre\">"
         self.upload_file_form = '<br><label for="imageFile">Select an image to upload: </label>\
             <input type="file" id="imageFile" accept="image/*">\
-            <button id="upload">post</button><br>\
+            <button id="upload" hidden></button><br>\
             '
         self.latest_image = '<img src="/latest" width=150>'
 post = post_()
